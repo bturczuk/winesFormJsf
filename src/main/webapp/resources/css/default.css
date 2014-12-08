@@ -1,20 +1,21 @@
 body {
    margin: 0;
    padding: 0;
-   background-color:  lightGray;
-   font-family: Verdana, sans-serif;
+   background-color: #FFFFFF;
    font-size: 0.9em;
 }
 
+
+
 .heading {
-  padding: 10px;
+	display:block;
+  padding-bottom: 30px;
   background: #FFFFFF;
-  border: 1px solid blue;
-  font-size: 1.4em;
-  font-style: italic;
-  font-family: Verdana;
-  text-align: center;
-  height: 50px;
+  font-size: 0.7em;
+  background-position: top;
+  background-repeat:no-repeat;
+  background-image : url(http://i62.tinypic.com/155pf0z.jpg);
+	
 }
 
 .menuAndContent {
@@ -26,24 +27,22 @@ body {
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 20px;
-  border: thin solid blue;
   position: absolute;
   left: 10px;
-  height: 80%;
+  height: 60%;
   width: 200px;
   background: #FFFFFF;
-  top: 90px;
+  top: 50px;
 }
 
 .content {
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 20px;
-  border: thin solid blue;
   background: #FFFFFF;	
   position:absolute;
   left: 225px; 
   right: 65px;
   top: 90px;
-  height: 80%;
+  height: 70%;
 }

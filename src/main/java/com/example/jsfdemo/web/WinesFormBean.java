@@ -16,7 +16,6 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.example.jsfdemo.domain.Person;
 import com.example.jsfdemo.domain.Wines;
 import com.example.jsfdemo.service.WinesManager;
 
@@ -47,6 +46,7 @@ public class WinesFormBean implements Serializable {
 	}
 	
 	// Actions
+	
 	public String addWine() {
 		wm.add(wine);
 		return "showWines";
@@ -57,6 +57,18 @@ public class WinesFormBean implements Serializable {
 		Wines wineToDelete = wines.getRowData();
 		wm.deleteWine(wineToDelete);
 		return null;
+	}
+	
+	public String editWine(){
+		Wines wineToUpdate = wines.getRowData();
+		wm.updateWine(wineToUpdate);
+		
+			return "showUpdate";
+	}
+	
+	public String saveWine(){
+		wm.updateWineFinish(wine);
+			return "showWines";
 	}
 }
 	// Validators

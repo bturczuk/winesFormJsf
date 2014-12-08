@@ -8,19 +8,31 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:define name="content">
-		<h:form id="personForm">
+		<h:form id="wineForm">
 			<h:panelGrid columns="2">
 			
-				<h:outputText value="#{msg.personFirstNameLabel}" />
-				<h:inputText id="name" value="#{personBean.person.firstName}">
-					<a4j:ajax render="messages" execute="@this" />
-				</h:inputText>
-
-				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="pin" value="#{personBean.person.pin}" />
-
-
-				<h:outputText value="#{msg.personDobLabel}" />
+				
+			<h:outputText value = "#{msg.typeOfWine}"/>
+			<h:selectOneListbox id="type" value="#{winesBean.wine.type}">
+		        <f:selectItem id="red" itemLabel="Red" itemValue="Red" />
+		        <f:selectItem id="white" itemLabel="White" itemValue="White" />
+		        <f:selectItem id="rose" itemLabel="Rose" itemValue="Rose" />
+				<a4j:ajax render="messages" execute="@this" />
+		    </h:selectOneListbox>
+		    
+		    
+			<h:outputText value = "#{msg.strains}"/>
+		    <h:selectManyCheckbox id="strains"
+		                          value="#{winesBean.wine.strain}"
+		                          layout="pageDirection">
+		        <f:selectItem id="rioja" itemLabel="Rioja" itemValue="1" />
+		        <f:selectItem id="carmenere" itemLabel="Carmenere" itemValue="2" />
+		        <f:selectItem id="savblanc" itemLabel="Sauvignion Blanc" itemValue="3" />
+		        <f:selectItem id="primitivo" itemLabel="Primitivo" itemValue="4" />
+		        <f:selectItem id="pinotgrigio" itemLabel="Pinot Grigio" itemValue="5" />
+				<a4j:ajax render="messages" execute="@this" />
+		    </h:selectManyCheckbox>
+			
 
 				<rich:calendar value="#{personBean.person.dateOfBirth}"
 					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
@@ -28,6 +40,12 @@
 					<a4j:ajax render="messages" execute="@this" />
 				</rich:calendar>
 			</h:panelGrid>
+
+
+			<h:outputText value = "#{msg.alcohol}"/>
+	        <rich:inputNumberSlider value="10" width="10" maxValue="14"
+            step="1" showToolTip="false" />
+           
 
 			<h:panelGrid>
 				<h:messages for="" />
@@ -38,12 +56,12 @@
 			<a4j:outputPanel ajaxRendered="true">
 				<h:panelGrid columns="2">
 
-					<h:outputText value="#{msg.personFirstNameLabel}" />
-					<h:outputText id="nameOutput"
-						value="#{personBean.person.firstName}" />
+					<h:outputText value="#{msg.typeOfWine}" />
+					<h:outputText id="typeOutput"
+						value="#{winesBean.wine.type}" />
 
-					<h:outputText value="#{msg.personPinLabel}" />
-					<h:outputText id="pinOutput" value="#{personBean.person.pin}" />
+					<h:outputText value="#{msg.strains}" />
+					<h:outputText id="strainsOutput" value="#{winesBean.wine.strain}" />
 
 
 					<h:outputText value="#{msg.personDobLabel}" />

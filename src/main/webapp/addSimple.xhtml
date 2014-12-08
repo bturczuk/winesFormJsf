@@ -5,22 +5,63 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/templates/default.xhtml">
 	<ui:define name="content">
-		<h:form id="personform">
+		<h:form id="wineform">
+			<h:panelGrid columns="2" align="center">
+			
+			<h:outputText value="#{msg.typeOfWine}" />
+		    <h:selectOneListbox id="type"
+		                        value="#{winesBean.wine.type}">
+		        <f:selectItem id="red" itemLabel="Red" itemValue="Red" />
+		        <f:selectItem id="white" itemLabel="White" itemValue="White" />
+		        <f:selectItem id="rose" itemLabel="Rose" itemValue="Rose" />
+		    </h:selectOneListbox>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
+			<h:outputText value="#{msg.origin}"/>
+			<h:selectOneRadio id="origin" value="#{winesBean.wine.origin}">
+				<f:selectItem id="italy" itemLabel="Italy" itemValue="Italy" />
+				<f:selectItem id="spain" itemLabel="Spain" itemValue="Spain" />
+				<f:selectItem id="chile" itemLabel="Chile" itemValue="Chile" />
+				<f:selectItem id="usa" itemLabel="USA" itemValue="USA" />
+			</h:selectOneRadio>
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="#{msg.strains}" />
+		    <h:selectManyCheckbox id="strains"
+		                          value="#{winesBean.wine.strain}"
+		                          layout="pageDirection">
+		        <f:selectItem id="rioja" itemLabel="Rioja" itemValue="Rioja" />
+		        <f:selectItem id="carmenere" itemLabel="Carmenere" itemValue="Carmenere" />
+		        <f:selectItem id="savblanc" itemLabel="Sauvignion Blanc" itemValue="Sauvignon Blanc" />
+		        <f:selectItem id="primitivo" itemLabel="Primitivo" itemValue="Primitivo" />
+		        <f:selectItem id="pinotgrigio" itemLabel="Pinot Grigio" itemValue="Ponit Grigio" />
+		    </h:selectManyCheckbox>
+		    </h:panelGrid>
+		    
 			<h:panelGrid columns="2">
 
-				<h:outputText value="#{msg.typeOfWine}" />
-				<h:inputText id="type" value="#{wineBean.wine.type}" />
-
-				<h:outputText value="#{msg.strains}" />
-				<h:inputText id="strain" value="#{wineBean.wine.strains}" />
+		    	<h:outputText value="#{msg.name}" />
+				<h:inputText id="name" value="#{winesBean.wine.name}" />
 			</h:panelGrid>
-
+		
+		
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.dom}" />
+				<h:inputText id="dom" value="#{winesBean.wine.domm}" />
+    		</h:panelGrid>
+		
 			<h:commandButton value="#{msg.winesFormOKButton}"
-				action="#{wineBean.add}" />
+				action="#{winesBean.addWine}" />
 				
-			<h:panelGrid>
+			<h:commandButton value="#{msg.winesAll}"
+				action="showPersons?faces-redirect=true" />
 				<h:messages showDetail="#{true}" showSummary="#{false}" />
-			</h:panelGrid>
+
 		</h:form>
 	</ui:define>
 </ui:composition>
+

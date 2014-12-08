@@ -9,23 +9,48 @@
 	
     <h:form>
     
-     <h:dataTable value="#{wineBean.allPersons}" var="item">
+     <h:dataTable value="#{winesBean.allWines}" var="item">
       <f:facet name="header">#{msg.winesShowAll}</f:facet>
       
-      <h:column>
-        <f:facet name="header">#{msg.typeOfWine}</f:facet>
-        #{item.firstName}
-      </h:column>
+		<h:column>
+			<f:facet name="header">#{msg.typeOfWine}</f:facet>
+			<h:inputText value="#{item.type}" size="10" rendered="#{item.canEdit}" />
+			<h:outputText value="#{item.type}" rendered="#{not item.canEdit}" />
+      	</h:column>
+
+		<h:column>
+	        <f:facet name="header">#{msg.origin}</f:facet>
+			<h:inputText value="#{item.origin" size="10" rendered="#{item.canEdit}" />
+			<h:outputText value="#{item.origin}" rendered="#{not item.canEdit}" />
+		</h:column>
       
-      <h:column>
-        <f:facet name="header">#{msg.strains}</f:facet>
-        #{item.pin}
-      </h:column>
+		<h:column>
+	        <f:facet name="header">#{msg.dom}</f:facet>
+			<h:inputText value="#{item.dom}" size="10" rendered="#{item.canEdit}" />
+			<h:outputText value="#{item.dom}" rendered="#{not item.canEdit}" />
+		</h:column>
       
-      <h:column>
-        <f:facet name="header">#{msg.action}</f:facet>
-        <h:commandLink value="#{msg.actionDelete}" action="#{personBean.deletePerson}"/>
-      </h:column>
+		<h:column>
+	        <f:facet name="header">#{msg.name}</f:facet>
+			<h:inputText value="#{item.name}" size="10" rendered="#{item.canEdit}" />
+			<h:outputText value="#{item.name}" rendered="#{not item.canEdit}" />
+		</h:column>
+     
+		<h:column>
+	        <f:facet name="header">#{msg.sweetness}</f:facet>
+			<h:inputText value="#{item.sweetness}" size="10" rendered="#{item.canEdit}" />
+			<h:outputText value="#{item.sweetness}" rendered="#{not item.canEdit}" />
+		</h:column>
+      
+		<h:column>
+	        <f:facet name="header">#{msg.delete}</f:facet>
+	        <h:commandLink value="#{msg.actionDelete}" action="#{winesBean.deleteWine}"/>
+      	</h:column>
+      	
+      	 <h:column>
+			<f:facet name="header">#{msg.update}</f:facet>
+			<h:commandLink value="#{msg.actionUpdate}" action="#{winesBean.editWine}"/>
+		</h:column>
       
      </h:dataTable>
     </h:form>

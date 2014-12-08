@@ -12,10 +12,13 @@ public class WinesManager {
    
 private List<Wines> db = new ArrayList<Wines>();
 	
-	public void add(Wines wine){
-		Wines newWine = new Wines(wine.getType(), wine.getOrigin(),
-				wine.getStrain(), wine.getName(), wine.getYear(), wine.getSweetness(),
-				wine.getAlcohol(), wine.getPrice());
+			public void add(Wines wine) {
+			Wines newWine = new Wines();
+			newWine.setType(wine.getType());
+			newWine.setStrain(wine.getStrain());
+			newWine.setName(wine.getName());
+			newWine.setOrigin(wine.getOrigin());
+			newWine.setDOM(wine.getDOM());
 		
 		db.add(newWine);
 	}
@@ -23,39 +26,71 @@ private List<Wines> db = new ArrayList<Wines>();
 	public List<Wines> getAllWines(){
 		return db;
 	}
-	
-/*	public void delete(long uuid){
-		int i=0;
-		while(db.get(i).getId() != uuid)
-			i++;
-		if(db.get(i).getId() == uuid)
-			db.remove(i);
-	}
-*/
-	
-	public void deleteWine(Wines perswineon) {
-		Wines wineToRemove = null;
 
+	public void deleteWine(Wines wine) {
+		Wines wineToRemove = null;
+		for (Wines w : db){
+			if(wine.getId() == w.getId()){
+				wineToRemove = w;
+				break;
+			}
+		}
 		if (wineToRemove != null)
 			db.remove(wineToRemove);
 	}
 	
-	public void update(long uuid){
-		int i=0;
-		while(db.get(i).getId() != uuid)
-			i++;
-		if(db.get(i).getId() == uuid)
-			db.get(i);
-	}
 	
-	public void setUpdate(Wines wine, long uuid){
-		int i=0;
-		while(db.get(i).getId() != uuid)
-			i++;
-		if(db.get(i).getId() == uuid){
-			db.set(i, wine);
+	
+	
+	public void updateWine(Wines wine) {
+		Wines wineToUpdate = null;
+		for (Wines w : db) {
+			if (wine.getId() == w.getId()) {
+				wineToUpdate = w;
+				break;
+			}
+		}
+		if (wineToUpdate != null){
+		Wines newWine = new Wines();
+		newWine.setType(wine.getType());
+		newWine.setOrigin(wine.getOrigin());
+		newWine.setStrain(wine.getStrain());
+		newWine.setName(wine.getName());
+		newWine.setDOM(wine.getDOM());
+		newWine.setId(wine.getId());
 		}
 	}
+
+	
+	
+	public void updateWineFinish(Wines wine) {
+		Wines newWine = new Wines();
+		newWine.setType(wine.getType());
+		newWine.setOrigin(wine.getOrigin());
+		newWine.setStrain(wine.getStrain());
+		newWine.setName(wine.getName());
+		newWine.setDOM(wine.getDOM());
+		newWine.setId(wine.getId());
+		
+		Wines wineToUpdate = null;
+		int i=0;
+			for (Wines w : db) {
+					i++;
+					if (wine.getId() == w.getId()) {
+						wineToUpdate = w;
+						break;
+					}
+			}
+		if (wineToUpdate != null){
+				db.set(i-1,newWine);
+		}
+	}
+	
+		public String editWine(Wines wine){
+		wine.setCanEdit(true);
+		return null;
+	}
+	
 	
 	
 }

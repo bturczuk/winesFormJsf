@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="wineform">
+			<h:panelGrid columns="2" align="center">
+			
+			<h:outputText value="#{msg.typeOfWine}" />
+		    <h:selectOneListbox id="type"
+		                        value="#{winesBean.wine.type}">
+		        <f:selectItem id="red" itemLabel="Red" itemValue="Red" />
+		        <f:selectItem id="white" itemLabel="White" itemValue="White" />
+		        <f:selectItem id="rose" itemLabel="Rose" itemValue="Rose" />
+		    </h:selectOneListbox>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
+			<h:outputText value="#{msg.origin}"/>
+			<h:selectOneRadio id="origin" value="#{winesBean.wine.origin}">
+				<f:selectItem id="italy" itemLabel="Italy" itemValue="Italy" />
+				<f:selectItem id="spain" itemLabel="Spain" itemValue="Spain" />
+				<f:selectItem id="chile" itemLabel="Chile" itemValue="Chile" />
+				<f:selectItem id="usa" itemLabel="USA" itemValue="USA" />
+			</h:selectOneRadio>
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="#{msg.strains}" />
+		    <h:selectManyCheckbox id="strains"
+		                          value="#{winesBean.wine.strain}"
+		                          layout="pageDirection">
+		        <f:selectItem id="rioja" itemLabel="Rioja" itemValue="Rioja" />
+		        <f:selectItem id="carmenere" itemLabel="Carmenere" itemValue="Carmenere" />
+		        <f:selectItem id="savblanc" itemLabel="Sauvignion Blanc" itemValue="Sauvignon Blanc" />
+		        <f:selectItem id="primitivo" itemLabel="Primitivo" itemValue="Primitivo" />
+		        <f:selectItem id="pinotgrigio" itemLabel="Pinot Grigio" itemValue="Ponit Grigio" />
+		    </h:selectManyCheckbox>
+		    </h:panelGrid>
+		    
+			<h:panelGrid columns="2">
+
+		    	<h:outputText value="#{msg.name}" />
+				<h:inputText id="name" value="#{winesBean.wine.name}" />
+			</h:panelGrid>
+		
+		
+			<h:panelGrid columns="2">
+			<h:outputText value="#{msg.sweetness}" />
+		    <h:selectOneRadio id="sweetness"
+                      value="#{winesBean.wine.sweetness}">
+			        <f:selectItem id="dry" itemLabel="Dry" itemValue="Dry" />
+			        <f:selectItem id="sweet" itemLabel="Sweet" itemValue="Sweet" />
+			        <f:selectItem id="med-sweet" itemLabel="Med-sweet" itemValue="Med-sweet" />
+    		</h:selectOneRadio>
+    		</h:panelGrid>
+		
+			<h:commandButton value="#{msg.save}"
+				action="#{winesBean.saveWine}" />
+
+				<h:messages showDetail="#{true}" showSummary="#{false}" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

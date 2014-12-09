@@ -2,25 +2,49 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/default.xhtml">
+     <style>
+    .pic {
+        margin-bottom: -4px;
+        margin-right: 2px;
+    }
+    .search .rich-menu-item-hover{
+        background-color: transparent;
+        border-color: transparent;
+    }
+    </style>
+  
   <div>
 	<h:form>
-	  <ul>
-		<li>
-		  <h:commandLink action="home?faces-redirect=true">
-			<h:outputText value="#{msg.linkHome}" />
-		  </h:commandLink>
-		</li>
-		<li>
-		  <h:commandLink action="add?faces-redirect=true">
-			<h:outputText value="#{msg.wineAddLabel}" />
-		  </h:commandLink></li>
-		<li>
-		  <h:commandLink action="showPersons?faces-redirect=true">
-			 <h:outputText value="#{msg.winesAllButton}" />
-		  </h:commandLink>
-		</li>
-	</ul>
+	
+	<rich:dropDownMenu>
+		<f:facet name="label">
+			<h:panelGroup>
+			<h:outputText value = "#{msg.options}"/>
+			</h:panelGroup>
+		</f:facet>
+		<rich:menuItem submitMode="ajax" value="#{msg.linkHome}"
+		action="home?faces-redirect=true">
+		</rich:menuItem>
+		
+		<rich:menuGroup value="#{msg.addWineLabel}">
+		
+		<rich:menuItem submitMode="ajax" value="Simple"
+		action="addSimple?faces-redirect=true">
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" value="With RF"
+		action="addRF?faces-redirect=true">
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" value="With Ajax"
+		action="addAjax?faces-redirect=true">
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" value="With Validators"
+		action="addValidation?faces-redirect=true">
+		</rich:menuItem>
+		</rich:menuGroup>
+		</rich:dropDownMenu>
    </h:form>
   </div>
 </ui:composition>

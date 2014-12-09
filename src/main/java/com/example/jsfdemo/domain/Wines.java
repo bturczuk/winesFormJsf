@@ -15,9 +15,10 @@ public class Wines 	{
 		private String type = "";
 		private String origin = ""; 
 		private ArrayList<String> strain;
+		private String region = "";
 		private String name = "";
+		private Date dateOfManufacture;
 		private String alcohol = "";
-		private Date domm = new Date();
 		private boolean canEdit = false;
 		private Long uuid = UUID.randomUUID().getLeastSignificantBits();
 	
@@ -58,6 +59,21 @@ public class Wines 	{
 		return name;
 	}
 	
+	@Past
+	public Date getDateOfManufacture() {
+		return dateOfManufacture;
+	}
+	public void setDateOfManufacture(Date dateOfManufacture) {
+		this.dateOfManufacture = dateOfManufacture;
+	}
+	
+	public void setRegion(String region){
+		this.region = region;
+	}
+	public String getRegion(){
+		return region;
+	}
+	
 	public void setAlcohol(String alcohol){
 		this.alcohol = alcohol;
 	}
@@ -66,15 +82,6 @@ public class Wines 	{
 		return alcohol;
 	}
 
-	@Past
-	public Date getDOM() {
-	return domm;
-	}
-	
-	public void setDOM(Date domm) {
-	this.domm = domm;
-	}
-	
 	public long getId(){
 		return uuid;
 	}

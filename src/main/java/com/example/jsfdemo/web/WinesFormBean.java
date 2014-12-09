@@ -70,7 +70,7 @@ public class WinesFormBean implements Serializable {
 		wm.updateWineFinish(wine);
 			return "showWines";
 	}
-}
+
 	// Validators
 
 	// Business logic validation
@@ -78,6 +78,7 @@ public class WinesFormBean implements Serializable {
 			Object value) {
 
 		String pin = (String) value;
+		String origin = (String) value;
 
 		for (Person person : pm.getAllPersons()) {
 			if (person.getPin().equalsIgnoreCase(pin)) {
@@ -88,18 +89,30 @@ public class WinesFormBean implements Serializable {
 			}
 		}
 	}
-*/
+	*/
+
 	// Multi field validation with <f:event>
 	// Rule: first two digits of PIN must match last two digits of the year of
 	// birth
-	/*
+
 	public void validatePinDob(ComponentSystemEvent event) {
-
+		
 		UIForm form = (UIForm) event.getComponent();
-		UIInput pin = (UIInput) form.findComponent("pin");
-		UIInput dob = (UIInput) form.findComponent("dob");
+		UIInput origin_ = (UIInput) form.findComponent("origin_");
+		UIInput region_ = (UIInput) form.findComponent("region_");
 
-		if (pin.getValue() != null && dob.getValue() != null
+
+		if (origin_.getValue() == "Italy" && region_.getValue() != "Sicilia"){
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(form.getId(), new FacesMessage(
+					"i'm so sorry"));
+			context.renderResponse();
+			}
+		
+	}
+		
+		
+		/*if (pin.getValue() != null && dob.getValue() != null
 				&& pin.getValue().toString().length() >= 2) {
 			String twoDigitsOfPin = pin.getValue().toString().substring(0, 2);
 			Calendar cal = Calendar.getInstance();
@@ -114,7 +127,8 @@ public class WinesFormBean implements Serializable {
 						"PIN doesn't match date of birth"));
 				context.renderResponse();
 			}
-		}
-	}
+			*/
+		
+	
 }
-*/
+

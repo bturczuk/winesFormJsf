@@ -18,7 +18,7 @@ private List<Wines> db = new ArrayList<Wines>();
 			newWine.setStrain(wine.getStrain());
 			newWine.setName(wine.getName());
 			newWine.setOrigin(wine.getOrigin());
-			newWine.setDOM(wine.getDOM());
+			
 		
 		db.add(newWine);
 	}
@@ -56,8 +56,8 @@ private List<Wines> db = new ArrayList<Wines>();
 		newWine.setOrigin(wine.getOrigin());
 		newWine.setStrain(wine.getStrain());
 		newWine.setName(wine.getName());
-		newWine.setDOM(wine.getDOM());
 		newWine.setId(wine.getId());
+		newWine.setDateOfManufacture(wine.getDateOfManufacture());
 		}
 	}
 
@@ -69,8 +69,8 @@ private List<Wines> db = new ArrayList<Wines>();
 		newWine.setOrigin(wine.getOrigin());
 		newWine.setStrain(wine.getStrain());
 		newWine.setName(wine.getName());
-		newWine.setDOM(wine.getDOM());
 		newWine.setId(wine.getId());
+		newWine.setDateOfManufacture(wine.getDateOfManufacture());
 		
 		Wines wineToUpdate = null;
 		int i=0;

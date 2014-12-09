@@ -6,41 +6,42 @@
 	template="/templates/default.xhtml">
 	<ui:define name="content">
 
-		<h:form id="personForm">
-            <f:event type="postValidate" listener="#{personBean.validatePinDob}" />
+		<h:form id="wineForm">
+            <f:event type="postValidate" listener="#{winesBean.validatePinDob}" />
             
 			<h:panelGrid columns="2">
 
-				<h:outputText value="#{msg.personFirstNameLabel}" />
-				<h:inputText id="firstName" value="#{personBean.person.firstName}" required="#{true}"/>
+				<h:outputText value="#{msg.typeOfWine}" />
+			    <h:selectOneListbox id="type_"  value="#{winesBean.wine.type}">
+			        <f:selectItem id="red" itemLabel="Red" itemValue="Red" />
+			        <f:selectItem id="white" itemLabel="White" itemValue="White" />
+			        <f:selectItem id="rose" itemLabel="Rose" itemValue="Rose" />
+			    </h:selectOneListbox>		
+				
+				<h:outputText value="#{msg.origin}"/>
+				<h:selectOneRadio id="origin_" value="#{winesBean.wine.origin}">
+					<f:selectItem id="Italy" itemLabel="Italy" itemValue="Italy" />
+					<f:selectItem id="Spain" itemLabel="Spain" itemValue="Spain" />
+					<f:selectItem id="Chile" itemLabel="Chile" itemValue="Chile" />
+					<f:selectItem id="Usa" itemLabel="USA" itemValue="USA" />
+				</h:selectOneRadio>
+				
+				<h:outputText value="#{msg.region}"/>
+				<h:selectOneRadio id="region_" value="#{winesBean.wine.region}">
+					<f:selectItem id="Sicilia" itemLabel="Sicilia" itemValue="Sicilia" />
+					<f:selectItem id="Valencia" itemLabel="Valencia" itemValue="Valencia" />
+					<f:selectItem id="Atacama" itemLabel="Atacama" itemValue="Atacama" />
+					<f:selectItem id="California" itemLabel="California" itemValue="California" />
+				</h:selectOneRadio>
 
-				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="pin" value="#{personBean.person.pin}"
-					validator="#{personBean.uniquePin}" required="#{true}">
-					<f:validator validatorId="pinValidator" />
-				</h:inputText>
-
-				<h:outputText value="#{msg.personDobLabel}" />
-				<h:inputText id="dob" value="#{personBean.person.dateOfBirth}">
-				  <f:convertDateTime type="date" pattern="dd.MM.yyyy" />
-				</h:inputText>
-
-				<h:outputText value="#{msg.personZipCodeLabel}" />
-				<h:inputText id="zipCode" value="#{personBean.person.zipCode}" />
-
-				<h:outputText value="#{msg.personWeightLabel}" />
-				<h:inputText id="weight" value="#{personBean.person.weight}">
-					<f:validateDoubleRange minimum="20.5" maximum="150.5" />
-				</h:inputText>
-			</h:panelGrid>
-			
-			<h:commandButton value="#{msg.personFormOKButton}"
-				action="#{personBean.addPerson}" />
+			<h:commandButton value="#{msg.winesFormOKButton}"
+				action="#{winesBean.addWine}" />
 
 
 			<h:panelGrid>
-				<h:messages id="messages" showDetail="#{true}"
-					showSummary="#{false}" />
+				<h:messages id="messages" showDetail="#{true}" showSummary="#{false}" />
+			</h:panelGrid>
+			
 			</h:panelGrid>
 		</h:form>
 
